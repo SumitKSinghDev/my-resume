@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit Kumar Singh - Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.3;
+            color: #333;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            background: white;
+            font-size: 14px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 15px;
+        }
+        
+        .name {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        
+        .contact-item {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+        }
+        
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 3px;
+        }
+        
+        .objective {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #4b5563;
+            text-align: justify;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .education-item, .project-item {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 2px solid #e5e7eb;
+        }
+        
+        .institution, .project-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+        
+        .degree, .project-subtitle {
+            font-weight: 500;
+            color: #2563eb;
+            margin: 2px 0;
+            font-size: 13px;
+        }
+        
+        .period, .technologies {
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+        
+        .grade {
+            font-weight: 600;
+            color: #059669;
+            font-size: 12px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .skill-category {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #2563eb;
+        }
+        
+        .skill-category h4 {
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        
+        .skill-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .project-features {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        
+        .project-features li {
+            margin: 2px 0;
+            color: #4b5563;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .certifications-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .cert-item {
+            background: #f0f9ff;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #0ea5e9;
+        }
+        
+        .cert-title {
+            font-weight: 600;
+            color: #0c4a6e;
+            font-size: 12px;
+        }
+        
+        .cert-issuer {
+            color: #0369a1;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+        
+        .additional-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 13px;
+        }
+        
+        @media print {
+            .download-section {
+                display: none;
+            }
+            body {
+                padding: 15px;
+                font-size: 12px;
+                max-width: 100%;
+            }
+            .name {
+                font-size: 1.8em;
+            }
+            .section {
+                margin-bottom: 15px;
+            }
+            .page-break {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadPDF()">
+            📄 Download PDF Resume
+        </button>
+    </div>
+
+    <div id="resume-content">
+        <div class="header">
+            <h1 class="name">SUMIT KUMAR SINGH</h1>
+            <div class="contact-info">
+                <a href="mailto:sumitksingh243@gmail.com" class="contact-item">📧 sumitksingh243@gmail.com</a>
+                <a href="tel:+917050114544" class="contact-item">📞 +91 7050114544</a>
+                <span class="contact-item">📍 Ranchi, Jharkhand</span>
+                <a href="https://github.com/SumitKSinghDev" target="_blank" class="contact-item">🖥️ GitHub</a>
+                <a href="https://www.linkedin.com/in/sumit-kumar-singh-0462b92b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-item">💼 LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="objective">
+                Computer Science Engineering student specializing in AI & ML with strong foundation in web development and programming. 
+                Demonstrated experience in building productivity applications. Passionate about leveraging technology to solve real-world problems.
+            </p>
+        </div>
+
+        <div class="two-column">
+            <div>
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="institution">C.V. Raman Global University</div>
+                        <div class="degree">B.Tech CSE (AI & ML)</div>
+                        <div class="period">2023 – Present</div>
+                        <div class="grade">CGPA: 9.25/10.0</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="institution">Saraswati Shishu Vidya Mandir</div>
+                        <div class="degree">Class 12</div>
+                        <div class="period">2021 – 2022</div>
+                        <div class="grade">85%</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="institution">Saraswati Shishu Vidya Mandir</div>
+                        <div class="degree">Class 10</div>
+                        <div class="period">2019 – 2020</div>
+                        <div class="grade">85%</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="certifications-list">
+                        <div class="cert-item">
+                            <div class="cert-title">Web Development</div>
+                            <div class="cert-issuer">Internshala</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-title">Generative AI</div>
+                            <div class="cert-issuer">Google Cloud</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-title">Hackathon Badge</div>
+                            <div class="cert-issuer">Codédx</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Languages</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Web Tech</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Frameworks</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Spring Boot</span>
+                                <span class="skill-tag">Streamlit</span>
+                                <span class="skill-tag">Bootstrap</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">REST APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <div class="project-title">Karyaa – Study/Work Tracker</div>
+                    <div class="project-subtitle">Python, Streamlit</div>
+                    <ul class="project-features">
+                        <li>Comprehensive dashboard for task management and goal tracking</li>
+                        <li>Daily & weekly planning with priority-based organization</li>
+                        <li>Visual progress indicators and resource linking system</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">10xHackathon Application</div>
+                    <div class="project-subtitle">TypeScript</div>
+                    <ul class="project-features">
+                        <li>Innovative hackathon solution using TypeScript</li>
+                        <li>Modern development practices and clean architecture</li>
+                        <li>Advanced TypeScript features implementation</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Retro Portfolio Website</div>
+                    <div class="project-subtitle">HTML, CSS, JavaScript</div>
+                    <ul class="project-features">
+                        <li>Retro-themed portfolio for Codédx Hackathon</li>
+                        <li>Custom animations and responsive design</li>
+                        <li>Cross-platform compatibility optimization</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <div class="project-title">Self-Study Tracker</div>
+                    <div class="project-subtitle">Python</div>
+                    <ul class="project-features">
+                        <li>Personal learning journey tracking system</li>
+                        <li>Progress monitoring and analytics</li>
+                        <li>Structured learning path management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Additional Information</h2>
+            <div class="additional-info">
+                <div><strong>Languages:</strong> English (Fluent), Hindi (Native)</div>
+                <div><strong>Interests:</strong> Cricket, Chess, Technology Innovation</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('resume-content');
+            const opt = {
+                margin: [0.4, 0.4, 0.4, 0.4],
+                filename: 'Sumit_Kumar_Singh_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html> 
