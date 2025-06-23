@@ -251,6 +251,22 @@
             font-weight: 600;
             color: #0c4a6e;
             font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cert-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .cert-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
         }
         
         .cert-issuer {
@@ -382,19 +398,31 @@
                     <h2 class="section-title">Certifications</h2>
                     <div class="certifications-list">
                         <div class="cert-item" data-cert-pdf="internshala.pdf">
-                            <div class="cert-title">Web Development</div>
+                            <div class="cert-title">
+                                Web Development
+                                <a href="internshala.pdf" target="_blank" class="cert-link">📄 View</a>
+                            </div>
                             <div class="cert-issuer">Internshala</div>
                         </div>
                         <div class="cert-item" data-cert-image="gen-ai.jpg">
-                            <div class="cert-title">Generative AI</div>
+                            <div class="cert-title">
+                                Generative AI
+                                <a href="gen-ai.jpg" target="_blank" class="cert-link">📄 View</a>
+                            </div>
                             <div class="cert-issuer">Google Cloud</div>
                         </div>
                         <div class="cert-item" data-cert-image="hackathon.jpg">
-                            <div class="cert-title">Hackathon Badge</div>
+                            <div class="cert-title">
+                                Hackathon Badge
+                                <a href="hackathon.jpg" target="_blank" class="cert-link">📄 View</a>
+                            </div>
                             <div class="cert-issuer">Codédx</div>
                         </div>
                         <div class="cert-item" data-cert-image="nptel.jpg">
-                            <div class="cert-title">Innovation by Design</div>
+                            <div class="cert-title">
+                                Innovation by Design
+                                <a href="nptel.jpg" target="_blank" class="cert-link">📄 View</a>
+                            </div>
                             <div class="cert-issuer">NPTEL</div>
                         </div>
                     </div>
@@ -535,7 +563,12 @@
             const closeBtn = document.querySelector('.close-btn');
 
             certItems.forEach(item => {
-                item.addEventListener('click', function() {
+                item.addEventListener('click', function(event) {
+                    // Don't trigger modal if clicking on the direct link
+                    if (event.target.classList.contains('cert-link')) {
+                        return;
+                    }
+                    
                     const certImage = this.getAttribute('data-cert-image');
                     const certPdf = this.getAttribute('data-cert-pdf');
 
